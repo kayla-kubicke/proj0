@@ -49,7 +49,6 @@ public class Model {
     /** Returns a hashmap where the key is an existing tile value and the value is a list of the positions where that
      * value resides on the board. */
      public HashMap<Integer, ArrayList<int[]>> generateValueToPositionsHashMap() {
-         // https://www.youtube.com/watch?v=_La9NQrfbkE
         HashMap<Integer, ArrayList<int[]>> valueToPositionMap = new HashMap<>();
 
         for(int x = 0; x < size(); x++) {
@@ -70,7 +69,7 @@ public class Model {
             }
         }
 
-        // https://www.youtube.com/watch?v=UD4i_8WOiX8
+
         // System.out.println(valueToPositionMap);
         return valueToPositionMap;
      }
@@ -155,26 +154,12 @@ public class Model {
              return true;
          }
 
-         // Second condition:
-         // two adjacent tiles with same value exist
-        // What are the (qualifying) conditions?
-            // North (up)
-                // x coordinates are equal
-            // South (down)
-                // same as above, x coordinates equal
-            // East (right)
-                // y coordinates are equal
-            // West (left)
-                // same as above, y coordinates are equal
-
-        // loop: grab key (iterate over keys all except null (0) condition)
-            // loop: grab value
-                // iterate over other values returned by key
-                    // if match
-                        // check if adjacent by...
-                            // condition 1: they are directly next to each other
-                            // condition 2: they have row or column in common (as above too fyi)
-                            // and tiles in between are null (key 0).
+        // Second condition:
+        // do not have to account for non-neighboring tiles - space condition is checked above
+        // iterate over key's values
+            // for each value, iterate over remaining positions
+            // if x or y are equal and the 'other' coordinate is + or - 1
+                // return true;
 
         return false;
     }
