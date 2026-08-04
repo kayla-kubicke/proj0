@@ -53,7 +53,7 @@ public class Model {
 
         for(int x = 0; x < size(); x++) {
             for(int y = 0; y < size(); y++) {
-                int[] position = {x, y};
+                int[] position = {x, y}; // Would prefer to size array (2 elements), but won't worry about it right now.
                 if (board.tile(x, y) == null) {
                     // Better way to do this? Did I include extra steps?
                     ArrayList<int[]> dummyList = new ArrayList<>();
@@ -156,10 +156,20 @@ public class Model {
 
         // Second condition:
         // do not have to account for non-neighboring tiles - space condition is checked above
-        // iterate over key's values
-            // for each value, iterate over remaining positions
-            // if x or y are equal and the 'other' coordinate is + or - 1
-                // return true;
+        // iterate over each key's values
+        // for each value, iterate over remaining positions and
+        // if x or y are equal and the 'other' coordinate is + or - 1 return true
+
+        // for (Integer tileValue : valueToPositionMap.keySet()) {
+            // ArrayList<int[]> positionsList = valueToPositionMap.get(tileValue);
+            // for (int outer = 0; outer < positionsList.size(); outer++) {
+                // for (int inner = outer + 1; inner < positionList.size(); inner++) {
+                    // if (((positionList[outer][1] + 1) == position[inner][1] || (positionList[outer][1] - 1) == position[inner][1]) && positionList[outer][0] == position[inner][0]) {
+                        // return true;
+                    // }
+                // }
+            // }
+        // }
 
         return false;
     }
