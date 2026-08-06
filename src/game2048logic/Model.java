@@ -160,16 +160,16 @@ public class Model {
         // for each value, iterate over remaining positions and
         // if x or y are equal and the 'other' coordinate is + or - 1 return true
 
-        // for (Integer tileValue : valueToPositionMap.keySet()) {
-            // ArrayList<int[]> positionsList = valueToPositionMap.get(tileValue);
-            // for (int outer = 0; outer < positionsList.size(); outer++) {
-                // for (int inner = outer + 1; inner < positionList.size(); inner++) {
-                    // if (((positionList[outer][1] + 1) == position[inner][1] || (positionList[outer][1] - 1) == position[inner][1]) && positionList[outer][0] == position[inner][0]) {
-                        // return true;
-                    // }
-                // }
-            // }
-        // }
+         for (Integer tileValue : valueToPositionMap.keySet()) {
+             ArrayList<int[]> positionsList = valueToPositionMap.get(tileValue);
+             for (int outer = 0; outer < positionsList.size(); outer++) {
+                 for (int inner = outer + 1; inner < positionsList.size(); inner++) {
+                     if (((positionsList.get(outer)[1] + 1) == positionsList.get(inner)[1] || (positionsList.get(outer)[1] - 1) == positionsList.get(inner)[1]) && positionsList.get(outer)[0] == positionsList.get(inner)[0]) {
+                         return true;
+                     }
+                 }
+             }
+         }
 
         return false;
     }
