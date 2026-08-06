@@ -160,11 +160,17 @@ public class Model {
         // for each value, iterate over remaining positions and
         // if x or y are equal and the 'other' coordinate is + or - 1 return true
 
+        // https://www.youtube.com/watch?v=Bp_6HLUQno0
          for (Integer tileValue : valueToPositionMap.keySet()) {
              ArrayList<int[]> positionsList = valueToPositionMap.get(tileValue);
              for (int outer = 0; outer < positionsList.size(); outer++) {
                  for (int inner = outer + 1; inner < positionsList.size(); inner++) {
+                     // North/South condition
                      if (((positionsList.get(outer)[1] + 1) == positionsList.get(inner)[1] || (positionsList.get(outer)[1] - 1) == positionsList.get(inner)[1]) && positionsList.get(outer)[0] == positionsList.get(inner)[0]) {
+                         return true;
+                     }
+                     // East/West condition
+                     if (((positionsList.get(outer)[0] + 1) == positionsList.get(inner)[0] || (positionsList.get(outer)[0] - 1) == positionsList.get(inner)[0]) && positionsList.get(outer)[1] == positionsList.get(inner)[1]) {
                          return true;
                      }
                  }
