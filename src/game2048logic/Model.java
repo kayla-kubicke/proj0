@@ -1,4 +1,4 @@
-// My solution for CS61 proj0.
+// My solution for CS61B proj0.
 package game2048logic;
 
 import game2048rendering.Board;
@@ -149,18 +149,12 @@ public class Model {
      * 2. There are two adjacent tiles with the same value.
      */
     public boolean atLeastOneMoveExists() {
-        // First condition: At least one empty space exists
+        // First condition:
          if (emptySpaceExists()) {
              return true;
          }
 
         // Second condition:
-        // do not have to account for non-neighboring tiles - space condition is checked above
-        // iterate over each key's values
-        // for each value, iterate over remaining positions and
-        // if x or y are equal and the 'other' coordinate is + or - 1 return true
-
-        // https://www.youtube.com/watch?v=Bp_6HLUQno0
          for (Integer tileValue : valueToPositionMap.keySet()) {
              ArrayList<int[]> positionsList = valueToPositionMap.get(tileValue);
              for (int outer = 0; outer < positionsList.size(); outer++) {
@@ -197,9 +191,33 @@ public class Model {
     public void moveTileUpAsFarAsPossible(int x, int y) {
         Tile currTile = board.tile(x, y);
         int myValue = currTile.value();
-        int targetY = y;
+        int targetY = y; // Benefit of this var? Maybe not doing this right...
 
-        // TODO: Tasks 5, 6, and 10. Fill in this function.
+        // https://forecastcoffeecompany.com/product/pine-cedar/
+        //
+        // Base case 1: tile is in the most northern position
+        // if (targetY == 3) {
+            // move(x, targetY, currTile);
+            // return;
+        // }
+
+        // if (!valueToPositionMap.get(0).contains({x, (targetY + 1)})) {
+            // Base case 2: merge occurs
+            // if (valueToPositionMap.get(myValue).contains({x, (targetY + 1)})) {
+                // move(x, targetY + 1, currTile);
+                // TO DO: update value
+                // TO DO: update score
+                // return;
+            // Base case 3: tile above is not the same value
+            // } else {
+                // move(x, targetY, currTile);
+                // return;
+            // }
+        // }
+
+        // Recursive case: tile above is empty
+        // FIX: This is not reassigning the current tile; something is wrong here.
+        // moveTileUpAsFarAsPossible(x, (targetY + 1));
     }
 
     /** Handles the movements of the tilt in column x of the board
