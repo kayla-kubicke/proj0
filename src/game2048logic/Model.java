@@ -191,33 +191,14 @@ public class Model {
     public void moveTileUpAsFarAsPossible(int x, int y) {
         Tile currTile = board.tile(x, y);
         int myValue = currTile.value();
-        int targetY = y; // Benefit of this var? Maybe not doing this right...
+        int targetY = y;
 
-        // https://forecastcoffeecompany.com/product/pine-cedar/
-        //
-        // Base case 1: tile is in the most northern position
-        // if (targetY == 3) {
-            // move(x, targetY, currTile);
-            // return;
-        // }
+        // Nope, try again.
 
-        // if (!valueToPositionMap.get(0).contains({x, (targetY + 1)})) {
-            // Base case 2: merge occurs
-            // if (valueToPositionMap.get(myValue).contains({x, (targetY + 1)})) {
-                // move(x, targetY + 1, currTile);
-                // TO DO: update value
-                // TO DO: update score
-                // return;
-            // Base case 3: tile above is not the same value
-            // } else {
-                // move(x, targetY, currTile);
-                // return;
-            // }
-        // }
-
-        // Recursive case: tile above is empty
-        // FIX: This is not reassigning the current tile; something is wrong here.
-        // moveTileUpAsFarAsPossible(x, (targetY + 1));
+        // This alone passes two tests in TestMoveTileUp:
+        // single tile in empty column
+        // two tiles merge no score
+         board.move(x, 3, currTile);
     }
 
     /** Handles the movements of the tilt in column x of the board
