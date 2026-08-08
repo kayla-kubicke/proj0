@@ -193,12 +193,25 @@ public class Model {
         int myValue = currTile.value();
         int targetY = y;
 
-        // Nope, try again.
+        // while (!targetY == 3) {
+            // // condition 1: tile above is empty, also safe checks null value
+            // if (if board.tile(x, (y+1)) == null) {
+                // targetY = targetY + 1;
+                // continue; (or break?)
+            // }
 
-        // This alone passes two tests in TestMoveTileUp:
-        // single tile in empty column
-        // two tiles merge no score
-         board.move(x, 3, currTile);
+            // Tile aboveTile = board.tile(x, (targetY + 1));
+            // // condition 2: the tile above is not equal to current tile
+            // // OR above tile is equal to the current tile but the current tile has already merged
+            // if (currTile != aboveTile || currTile == aboveTile && currTile.merged == true) {
+                // board.move(x, targetY, currTile);
+            // // condition 3: tile has not been merged and tile is equal to above tile
+            // } else if (currTile == aboveTile && currTile.merged == false) {
+                // targetY = targetY + 1;
+                // board.move(x, targetY, currTile);
+        // }
+
+        // board.move(x, 3, currTile);
     }
 
     /** Handles the movements of the tilt in column x of the board
