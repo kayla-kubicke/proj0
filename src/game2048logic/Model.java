@@ -224,7 +224,14 @@ public class Model {
      * so we are tilting the tiles in this column up.
      * */
     public void tiltColumn(int x) {
-        // TODO: Task 7. Fill in this function.
+        // Just iterate over the column properly, from top to bottom?, and call
+        // moveTileUpAsFarAsPossible(...) on each tile? Right?
+
+        // iterate over the column via the square matrix
+        // x will be constant, y will be decremented by 1 (starting at 3), ending at 0
+            // side note: should the max column and row length be a constant?
+            // will not worry about it right now
+        // send each tile to moveTileUpAsFarAsPossible(...)
     }
 
     public void tilt(Side side) {
