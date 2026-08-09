@@ -224,8 +224,6 @@ public class Model {
      * so we are tilting the tiles in this column up.
      * */
     public void tiltColumn(int x) {
-        // Ah, need to check for null tiles. Missed that.
-
          for (int y = 3; y >= 0; y--) {
              if (board.tile(x, y) != null) {
                 moveTileUpAsFarAsPossible(x, y);
