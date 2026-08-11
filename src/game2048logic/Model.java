@@ -149,12 +149,12 @@ public class Model {
      * 2. There are two adjacent tiles with the same value.
      */
     public boolean atLeastOneMoveExists() {
-        // First condition:
+        // condition 1:
          if (emptySpaceExists()) {
              return true;
          }
 
-        // Second condition:
+        // condition 2:
          for (Integer tileValue : valueToPositionMap.keySet()) {
              ArrayList<int[]> positionsList = valueToPositionMap.get(tileValue);
              for (int outer = 0; outer < positionsList.size(); outer++) {
@@ -224,6 +224,7 @@ public class Model {
      * so we are tilting the tiles in this column up.
      * */
     public void tiltColumn(int x) {
+        // doubles values of moved tiles
          for (int y = 3; y >= 0; y--) {
              if (board.tile(x, y) != null) {
                 moveTileUpAsFarAsPossible(x, y);
@@ -232,7 +233,10 @@ public class Model {
     }
 
     public void tilt(Side side) {
-        board.setViewingPerspective(Side.NORTH);
+        // Oops, should have run TestUpOnly...
+
+        // reset to north?
+         board.setViewingPerspective(Side.NORTH);
     }
 
     /** Tilts every column of the board toward SIDE.
