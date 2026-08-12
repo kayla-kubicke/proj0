@@ -233,10 +233,12 @@ public class Model {
     }
 
     public void tilt(Side side) {
-        // Oops, should have run TestUpOnly...
-
-        // reset to north?
-         board.setViewingPerspective(Side.NORTH);
+        // board.setViewingPerspective(Side.NORTH);
+        for (int x = 0; x <= 3; x++) {
+            tiltColumn(x);
+        }
+        // Suspect tileColumn(...) has bug...some non-merged tiles double in the test cases.
+        // Likely missed necessary logic in the if conditions.
     }
 
     /** Tilts every column of the board toward SIDE.
