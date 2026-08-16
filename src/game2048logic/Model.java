@@ -223,9 +223,7 @@ public class Model {
      * so we are tilting the tiles in this column up.
      * */
     public void tiltColumn(int x) {
-        // Caused top tile to call
-            // board.move(x, targetY, currTile);
-        // immediately, resulting in the top tile doubling
+        // https://www.youtube.com/watch?v=1Xthfy1WMfI
          for (int y = 2; y >= 0; y--) {
              if (board.tile(x, y) != null) {
                 moveTileUpAsFarAsPossible(x, y);
@@ -234,12 +232,15 @@ public class Model {
     }
 
     public void tilt(Side side) {
-        // board.setViewingPerspective(side);
+        board.setViewingPerspective(side);
         for (int x = 0; x <= 3; x++) {
             tiltColumn(x);
         }
 
-        // board.setViewingPerspective(Side.NORTH);
+        board.setViewingPerspective(Side.NORTH);
+        // Failing:
+            // TestMultipleMoves
+            // TestNbyN
     }
 
     /** Tilts every column of the board toward SIDE.
