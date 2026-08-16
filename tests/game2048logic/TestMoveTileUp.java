@@ -119,4 +119,86 @@ public class TestMoveTileUp {
         assertWithMessage("Boards should match:").that(before.toString()).isEqualTo(after.toString());
     }
 
+    /** Technically, not suppose to add code anywhere but Model...
+     * but, I don't think writing extra tests count. ;) */
+    @Test
+    @Tag("moveTileUpAsFarAsPossible")
+    @DisplayName("two tiles in neighboring columns do not update")
+    @GradedTest(number = "10.4")
+    public void testTwoTilesInNeighboringColumnsDoNotUpdate() {
+        int[][] board = {
+                {0, 0, 0, 0},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0},
+                {0, 0, 4, 2}
+        };
+        Model before = new Model(board, 0);
+        before.moveTileUpAsFarAsPossible(2, 0);
+        before.moveTileUpAsFarAsPossible(3, 0);
+
+        int[][] result = {
+                {0, 0, 4, 2},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0}
+        };
+
+        Model after = new Model(result, 0);
+        assertWithMessage("Boards should match:").that(before.toString()).isEqualTo(after.toString());
+    }
+
+    @Test
+    @Tag("moveTileUpAsFarAsPossible")
+    @DisplayName("three of the same tiles in single column merge as expected")
+    @GradedTest(number = "10.4")
+    public void testThreeOfTheSameTilesInSingleColumnMergeAsExpected() {
+        int[][] board = {
+                {0, 0, 0, 0},
+                {0, 0, 0, 2},
+                {0, 0, 0, 2},
+                {0, 0, 0, 2}
+        };
+        Model before = new Model(board, 0);
+        before.moveTileUpAsFarAsPossible(3, 2);
+        before.moveTileUpAsFarAsPossible(3, 1);
+        before.moveTileUpAsFarAsPossible(3, 0);
+
+        int[][] result = {
+                {0, 0, 0, 4},
+                {0, 0, 0, 2},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0}
+        };
+
+        Model after = new Model(result, 4);
+        assertWithMessage("Boards should match:").that(before.toString()).isEqualTo(after.toString());
+    }
+
+    /** Terrible name... */
+    @Test
+    @Tag("moveTileUpAsFarAsPossible")
+    @DisplayName("three tiles in single column do not merge again after top two merge and match (the) remaining tile")
+    @GradedTest(number = "10.4")
+    public void testThreeTilesInSingleColumnDoNotMergeAgainAfterTopTwoMergeAndMatchRemainingTile() {
+        int[][] board = {
+                {0, 0, 0, 0},
+                {0, 0, 0, 2},
+                {0, 0, 0, 2},
+                {0, 0, 0, 4}
+        };
+        Model before = new Model(board, 0);
+        before.moveTileUpAsFarAsPossible(3, 2);
+        before.moveTileUpAsFarAsPossible(3, 1);
+        before.moveTileUpAsFarAsPossible(3, 0);
+
+        int[][] result = {
+                {0, 0, 0, 4},
+                {0, 0, 0, 4},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0}
+        };
+
+        Model after = new Model(result, 4);
+        assertWithMessage("Boards should match:").that(before.toString()).isEqualTo(after.toString());
+    }
 }

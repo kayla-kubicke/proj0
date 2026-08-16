@@ -203,9 +203,8 @@ public class Model {
 
              Tile aboveTile = board.tile(x, (targetY + 1));
              // condition 2: the tile above is not equal to current tile
-             // OR above tile is equal to the current tile but the current tile has already merged
-             // * Left in 'extra' condition code for readability.
-             if (myValue != aboveTile.value() || myValue == aboveTile.value() && currTile.wasMerged()) {
+             // OR above tile is equal to the current tile but the current or above tile has already merged
+             if (myValue != aboveTile.value() || myValue == aboveTile.value() && (currTile.wasMerged() || aboveTile.wasMerged())) {
                  break;
              // condition 3: tile has not been merged and tile is equal to above tile
              } else if (myValue == aboveTile.value() && !currTile.wasMerged()) {
@@ -224,7 +223,6 @@ public class Model {
      * so we are tilting the tiles in this column up.
      * */
     public void tiltColumn(int x) {
-        // doubles values of moved tiles
          for (int y = 3; y >= 0; y--) {
              if (board.tile(x, y) != null) {
                 moveTileUpAsFarAsPossible(x, y);
@@ -233,7 +231,7 @@ public class Model {
     }
 
     public void tilt(Side side) {
-        // board.setViewingPerspective(Side.NORTH);
+//         board.setViewingPerspective(Side.NORTH);
         for (int x = 0; x <= 3; x++) {
             tiltColumn(x);
         }
