@@ -223,7 +223,10 @@ public class Model {
      * so we are tilting the tiles in this column up.
      * */
     public void tiltColumn(int x) {
-         for (int y = 3; y >= 0; y--) {
+        // Caused top tile to call
+            // board.move(x, targetY, currTile);
+        // immediately, resulting in the top tile doubling
+         for (int y = 2; y >= 0; y--) {
              if (board.tile(x, y) != null) {
                 moveTileUpAsFarAsPossible(x, y);
             }
@@ -231,12 +234,12 @@ public class Model {
     }
 
     public void tilt(Side side) {
-//         board.setViewingPerspective(Side.NORTH);
+        // board.setViewingPerspective(side);
         for (int x = 0; x <= 3; x++) {
             tiltColumn(x);
         }
-        // Suspect tileColumn(...) has bug...some non-merged tiles double in the test cases.
-        // Likely missed necessary logic in the if conditions.
+
+        // board.setViewingPerspective(Side.NORTH);
     }
 
     /** Tilts every column of the board toward SIDE.
