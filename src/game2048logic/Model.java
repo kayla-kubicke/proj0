@@ -108,7 +108,7 @@ public class Model {
      *  there is a tile with value 2048 on the board). */
     public boolean gameOver() {
         // (Guess) Might be the right spot to update the map...
-        // valueToPositionMap = generateValueToPositionsHashMap();
+         valueToPositionMap = generateValueToPositionsHashMap();
         return maxTileExists() || !atLeastOneMoveExists();
     }
 
@@ -240,11 +240,11 @@ public class Model {
         }
 
         board.setViewingPerspective(Side.NORTH);
-
         // Failing:
+            // Suspect some of this could be fixed by properly updating the hashmap...
+            // 'Multiple moves and end behavior' passes with line 111.
             // TestMultipleMoves Suite:
                 // Multiple moves
-                // Multiple moves and end behavior
                 // Multiple moves 2
 
             // After corrected for the hardcoded x or y's...
