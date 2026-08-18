@@ -107,8 +107,6 @@ public class Model {
     /** Return true iff the game is over (there are no moves, or
      *  there is a tile with value 2048 on the board). */
     public boolean gameOver() {
-        // (Guess) Might be the right spot to update the map...
-         valueToPositionMap = generateValueToPositionsHashMap();
         return maxTileExists() || !atLeastOneMoveExists();
     }
 
@@ -224,8 +222,6 @@ public class Model {
      * so we are tilting the tiles in this column up.
      * */
     public void tiltColumn(int x) {
-//        int startingY = size() - 2;
-
          for (int y = size() - 2; y >= 0; y--) {
              if (board.tile(x, y) != null) {
                 moveTileUpAsFarAsPossible(x, y);
@@ -242,10 +238,11 @@ public class Model {
         board.setViewingPerspective(Side.NORTH);
         // Failing:
             // Suspect some of this could be fixed by properly updating the hashmap...
-            // 'Multiple moves and end behavior' passes with line 111.
+            // 'Multiple moves and end behavior' passes with line 111, 241, or 260.
+            // NOTE: Added to line 260 for now.
             // TestMultipleMoves Suite:
-                // Multiple moves
-                // Multiple moves 2
+                // Multiple moves - extra tile with previously merged value
+                // Multiple moves 2 - 2 wrong tile values, both double of what was expected
 
             // After corrected for the hardcoded x or y's...
             // TestNbyN Suite:
@@ -257,6 +254,7 @@ public class Model {
     public void tiltWrapper(Side side) {
         board.resetMerged();
         tilt(side);
+        valueToPositionMap = generateValueToPositionsHashMap();
     }
 
 
