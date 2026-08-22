@@ -62,6 +62,7 @@ public class TestMultipleMoves {
                 {0, 0, 0, 0}
         }, 4), Side.EAST);
 
+        // Fails at this checkTilt(...) checkpoint
         model.addTile(Tile.create(4, 2, 0));
         checkTilt(model, new Model(new int[][]{
                 {0, 0, 4, 4},
@@ -154,6 +155,7 @@ public class TestMultipleMoves {
                 {0, 0, 0, 0}
         }, 42), Side.NORTH);
 
+        // Fails at this checkTilt(...) checkpoint
         model.addTile(Tile.create(4, 0, 0));
         checkTilt(model, new Model(new int[][]{
                 {4, 4, 4, 4},

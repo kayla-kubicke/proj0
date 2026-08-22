@@ -100,6 +100,7 @@ public class TestNbyN {
         };
         checkTilt(new Model(before, 0), new Model(after, 0), Side.WEST);
 
+        // Fails at this checkTilt(...) checkpoint
         before = new int[][] {
                 {4, 0, 4},
                 {2, 16, 2},
