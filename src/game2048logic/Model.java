@@ -69,7 +69,6 @@ public class Model {
             }
         }
 
-
         // System.out.println(valueToPositionMap);
         return valueToPositionMap;
      }
@@ -102,6 +101,7 @@ public class Model {
      *  same position. */
     public void addTile(Tile tile) {
         board.addTile(tile);
+
     }
 
     /** Return true iff the game is over (there are no moves, or
@@ -236,17 +236,24 @@ public class Model {
         }
 
         board.setViewingPerspective(Side.NORTH);
+        valueToPositionMap = generateValueToPositionsHashMap();
         // Failing:
             // Suspect some of this could be fixed by properly updating the hashmap...
-            // 'Multiple moves and end behavior' passes with line 111, 241, or 260.
-            // NOTE: Added to line 260 for now.
+            // 'Multiple moves and end behavior' passes with *update in tilt(...).
+                // Kinda worries me that the update doesn't pass the other two tests;
+                // may be unnecessary when other bug(s) are fixed? Not sure yet.
+
             // TestMultipleMoves Suite:
+            // Tests (mostly) calls TestUtils' checkTilt(...).
                 // Multiple moves - extra tile with previously merged value
                 // Multiple moves 2 - 2 wrong tile values, both double of what was expected
 
             // After corrected for the hardcoded x or y's...
             // TestNbyN Suite:
                 // Non-merged tilts for N = 1, 2, 3
+
+        // Love me some early 2000's feral girlie jams.
+        // https://www.youtube.com/watch?v=G-ffw5VZRss
     }
 
     /** Tilts every column of the board toward SIDE.
@@ -254,7 +261,6 @@ public class Model {
     public void tiltWrapper(Side side) {
         board.resetMerged();
         tilt(side);
-        valueToPositionMap = generateValueToPositionsHashMap();
     }
 
 
